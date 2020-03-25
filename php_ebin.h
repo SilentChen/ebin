@@ -47,8 +47,6 @@ PHP_RINIT_FUNCTION(ebin);
 PHP_RSHUTDOWN_FUNCTION(ebin);
 PHP_MINFO_FUNCTION(ebin);
 
-PHP_FUNCTION(confirm_ebin_compiled);	/* For testing, remove later. */
-
 /* 
   	Declare any global variables you may need between the BEGIN
 	and END macros here:     

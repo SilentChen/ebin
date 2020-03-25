@@ -39,7 +39,6 @@ static int le_ebin;
  * Every user visible function must have an entry in ebin_functions[].
  */
 const zend_function_entry ebin_functions[] = {
-	PHP_FE(confirm_ebin_compiled,	NULL)		/* For testing, remove later. */
 	PHP_FE(ebin_decode,	NULL)		/* For testing, remove later. */
 	PHP_FE_END	/* Must be the last line in ebin_functions[] */
 };
@@ -144,28 +143,6 @@ PHP_MINFO_FUNCTION(ebin)
 }
 /* }}} */
 
-
-/* Remove the following function when you have successfully modified config.m4
-   so that your module can be compiled into PHP, it exists only for testing
-   purposes. */
-
-/* Every user-visible function in PHP should document itself in the source */
-/* {{{ proto string confirm_ebin_compiled(string arg)
-   Return a string to confirm that the module is compiled in */
-PHP_FUNCTION(confirm_ebin_compiled)
-{
-	char *arg = NULL;
-	int arg_len, len;
-	char *strg;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &arg, &arg_len) == FAILURE) {
-		return;
-	}
-
-	len = spprintf(&strg, 0, "Congratulations! You have successfully modified ext/%.78s/config.m4. Module %.78s is now compiled into PHP.", "ebin", arg);
-	RETURN_STRINGL(strg, len, 0);
-}
-
 int _ebinary_decode( ei_x_buff *ebinary ,zval *htable){
     zval *z;
     int type;
@@ -259,7 +236,7 @@ PHP_FUNCTION(ebin_decode)
 	// php_printf("ARG:%s\n", arg);
 	ebinary =emalloc(sizeof(ei_x_buff));
 
-	ebinary->buff		= arg;
+	ebinary->buff   = arg;
 	ebinary->buffsz = arg_len;
 	ebinary->index	= 0;
 	ei_decode_version(ebinary->buff, &ebinary->index, &v);
