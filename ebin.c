@@ -39,7 +39,7 @@ static int le_ebin;
  * Every user visible function must have an entry in ebin_functions[].
  */
 const zend_function_entry ebin_functions[] = {
-	PHP_FE(ebin_decode,	NULL)		/* For testing, remove later. */
+	PHP_FE(ebin_decode,	NULL)
 	PHP_FE_END	/* Must be the last line in ebin_functions[] */
 };
 /* }}} */
